@@ -1,0 +1,18 @@
+node ('master'){
+    stage("git clone"){
+    git changelog: false, poll: false, url: 'https://github.com/aws-samples/eb-tomcat-snakes.git'
+   }
+     stage("Running the script now"){
+         sh '''
+         ./build.sh
+          echo .
+          echo .
+          '''
+   }
+     stage("Move Artifact to tmp folder"){
+         sh '''
+         mv ROOT.war /tmp/ROOT.war
+          ''' 
+     }
+    
+}
